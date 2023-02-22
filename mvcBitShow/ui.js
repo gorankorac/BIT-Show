@@ -10,16 +10,12 @@ const uiModule = (function(){
     fetchedData50.forEach((element) => {
       html +=
       ` 
-    <div class="card m-xl-4" style="width: 22rem" id="${element.id}">
-  <img
-    src=${element.image}
-    class="card-img-top"
-    alt="..."
-  />
-  <div class="card-body">
-    <h5 class="card-title text-center">${element.name}</h5>
-  </div>
-  </div> `;
+       <div class="card m-xl-4" style="width: 22rem" id="${element.id}">
+         <img src=${element.image} class="card-img-top" alt="..."/>
+         <div class="card-body">
+          <h5 class="card-title text-center">${element.name}</h5>
+        </div>
+      </div> `;
     })
     html += `</div>`
     hub.innerHTML = html;
@@ -88,22 +84,22 @@ const uiModule = (function(){
       };
      
        const finalHtml = `
-       <h1>${show.name}</h1>
-       <div class="detail-wrapper d-flex">
-         <img src="${show.img}  " alt="show cover" class="single-page-cover"/>
-         <ul class="list-wrapper">
-           <h2>Seasons(${numberOfSeasons})</h2>
-           ${seasonList}
-           <h2>Cast</h2>
-           ${castListHtml}
-           <h2>Crew</h2>
-           ${crewMembers}
-         </ul>
-       </div>
-       <div class="show-details">
-         <h2>Show Details</h2>
-         ${show.summary}
-         </br>
+        <h1>${show.name}</h1>
+          <div class="detail-wrapper d-flex">
+            <img src="${show.img}  " alt="show cover" class="single-page-cover"/>
+              <ul class="list-wrapper">
+                <h2>Seasons(${numberOfSeasons})</h2>
+                ${seasonList}
+                <h2>Cast</h2>
+                ${castListHtml}
+                <h2>Crew</h2>
+                ${crewMembers}
+              </ul>
+           </div>
+         <div class="show-details">
+             <h2>Show Details</h2>
+             ${show.summary}
+            </br>
          <div class="more">
            
            <div class="akas-list">
