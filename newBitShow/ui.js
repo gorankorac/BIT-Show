@@ -10,7 +10,7 @@ const uiModule = (function(){
     fetchedData50.forEach((element) => {
       html +=
       ` 
-    <div class="card m-xl-3  " style="width: 18rem" id="${element.id}">
+    <div class="card m-xl-4" style="width: 22rem" id="${element.id}">
   <img
     src=${element.image}
     class="card-img-top"
@@ -29,6 +29,7 @@ const uiModule = (function(){
     shows.forEach((show) => {
       const itemEl = document.createElement('div');
       itemEl.setAttribute('id', show.id);
+      
       itemEl.classList.add('search-item');
       itemEl.textContent = show.name;
       searchDropdownEl.appendChild(itemEl);
@@ -39,68 +40,90 @@ const uiModule = (function(){
     searchDropdownEl.innerHTML = '';
   };
 
+  const renderSinglePage = (show) => {
+       // Cast
+       let castListHtml = '';
+       let castCounter = 0;
+       show.cast.forEach((string) =>{
+         castCounter += 1;
+         if (castCounter < 10){
+           castListHtml += `
+           <li class="cast-item">${string}</li>
+           `
+         }
+       });
+       // Seasons
+       let seasonList = '';
+       let numberOfSeasons = 0;
+       show.seasons.forEach(({premiereDate, endDate}) =>{
+         numberOfSeasons += 1;
+         seasonList += `
+         <li class="season-item">${premiereDate} - ${endDate}</li>
+         `
+       });
+       // Crew
+      let crewMembers = '';
+      let counter = 0;
+      show.crew.forEach((string) => {
+       counter +=1;
+       if (counter < 6){
+         crewMembers += `
+         <li class="cast-item">${string}</li>
+         `
+       }
+       else {
+         return;
+       };
+      })
+      let listOfEpisodes = '';
+      show.episodes.forEach((string) =>{
+       listOfEpisodes += `<p class="episodes">${string}</p>`
+      })
+      // Akas
+      let listOfAkas = '';
+      if (Array.isArray(show.akas === true)){
+       show.akas.forEach((string) =>{
+         listOfAkas += `<p class="akas">${string}</p>`
+        })
+      };
+     
+       const finalHtml = `
+       <h1>${show.name}</h1>
+       <div class="detail-wrapper d-flex">
+         <img src="${show.img}  " alt="show cover" class="single-page-cover"/>
+         <ul class="list-wrapper">
+           <h2>Seasons(${numberOfSeasons})</h2>
+           ${seasonList}
+           <h2>Cast</h2>
+           ${castListHtml}
+           <h2>Crew</h2>
+           ${crewMembers}
+         </ul>
+       </div>
+       <div class="show-details">
+         <h2>Show Details</h2>
+         ${show.summary}
+         </br>
+         <div class="more">
+           
+           <div class="akas-list">
+             <h2> List of A.K.A.S</h2>
+             ${listOfAkas}
+           </div>
+           <div class="episode-list">
+             <h2> Episode List</h2>
+             ${listOfEpisodes}
+           </div>
+         </div>
+       </div>
+       `;
+       hub.innerHTML = finalHtml;
+     };
     
-  // const renderHomePage = (name,image,id) => {
-  //   const card = document.createElement('div');
-  //       card.setAttribute('class', 'card m-xl-4 m-3');
-  //       card.style.width = '12rem';
-  //   const img = document.createElement('img');
-  //       img.setAttribute('src', image );
-  //       img.setAttribute('class', 'card-img-top');
-  //   const cardBody = document.createElement('div');
-  //       cardBody.setAttribute('class', 'card-body');
-  //   const title = document.createElement('h4');
-  //         title.textContent = name;
-  //         title.setAttribute('class', 'card-title text-center');
-  //         title.textContent = name;
-  //    card.appendChild(img);
-  //    cardBody.appendChild(title);
-  //    card.appendChild(cardBody);
-  //    hub.appendChild(card);
-  //    console.log(card);
-  //    const html = `
-  //    <div class="card m-xl-4 m-3" style="width: 18rem" id="${fdata.id}">
-  //    <img
-  //      src=${fdata.image}
-  //      class="card-img-top"
-  //      alt="..."
-  //    />
-  //    <div class="card-body">
-  //      <h5 class="card-title text-center">${fdata.name}</h5>
-  //    </div>
-  //    </div> `;
-  //    console.log(html);
-  //    hub.insertAdjacentHTML('beforeend',html);
-  // }
-//   const final = hub.innerHTML = ` 
-//   <div class="card m-xl-4 m-3" style="width: 18rem" id="${finaldata.id}">
-//   <img
-//     src=${finaldata.image}
-//     class="card-img-top"
-//     alt="..."
-//   />
-//   <div class="card-body">
-//     <h5 class="card-title text-center">${finaldata.name}</h5>
-//   </div>
-//   </div> `
-//   console.log(final);
-
-//  const j =  finaldata.forEach(element =>  {  ` 
-//     <div class="card m-xl-4 m-3" style="width: 18rem" id="${element.id}">
-//   <img
-//     src=${element.image}
-//     class="card-img-top"
-//     alt="..."
-//   />
-//   <div class="card-body">
-//     <h5 class="card-title text-center">${element.name}</h5>
-//   </div>
-//   </div> `  });
-  
-
 return {
   renderHomePage,
   renderSearchDropdown,
-  clearDropdown 
+  clearDropdown,
+  renderSinglePage
  }
 })();
