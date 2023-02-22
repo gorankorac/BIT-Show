@@ -5,12 +5,13 @@
   const singleDropDown = document.querySelector('.dropdown');
   const bitShow = document.querySelector('#back');
 
-  const finaldata = data.getFetchData()
+  const finaldata = () => data.getFetchData()
     .then(function(fetchedData50) {
     console.log(fetchedData50);
    
    ui.renderHomePage (fetchedData50)
  });
+  finaldata()
   
   const onSearch = (e) => {
     const term = e.target.value;
