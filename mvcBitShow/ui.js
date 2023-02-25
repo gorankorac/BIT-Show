@@ -10,7 +10,7 @@ const uiModule = (function(){
     fetchedData50.forEach((element) => {
       html +=
       ` 
-       <div class="card m-xl-4" style="width: 22rem" id="${element.id}">
+       <div class="card m-xl-4"  style="width: 22rem" id="${element.id}">
          <img src=${element.image} class="card-img-top" alt="..."/>
          <div class="card-body">
           <h5 class="card-title text-center">${element.name}</h5>
