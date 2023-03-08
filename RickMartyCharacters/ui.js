@@ -28,12 +28,12 @@ export const renderSinglePage = (singlePage) => {
 
   const html =  `
   
-  <div class="char-modal" id="${singlePage.id}"><div><img src=${singlePage.image} class="card-img-top" alt=""></div><div>
+  <div class="char-modal" id="${singlePage.id}"><div><img src=${singlePage.image} class="card-img-top" alt=""></div><div class="list p-2">
     <h3>${singlePage.name}</h3>
-    <p>${singlePage.status}</p>
-    <p>${singlePage.species}</p>
-    <p>${singlePage.gender}</p>
-    <p>${singlePage.origin.name}</p>
+    <p>Status: ${singlePage.status}</p>
+    <p>Species: ${singlePage.species}</p>
+    <p>Gender: ${singlePage.gender}</p>
+    <p>Origin: ${singlePage.origin.name}</p>
   </div>
   </div>
 

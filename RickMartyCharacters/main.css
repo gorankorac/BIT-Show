@@ -23,7 +23,7 @@ img {
   position: fixed;
   min-width: 500px;
   min-height: 700px;
-  background-color: red;
+  background-color: lightpink;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

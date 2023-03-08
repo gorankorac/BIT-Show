@@ -5,6 +5,7 @@ import { renderSinglePage } from "./ui.js";
 
 const singlePage = document.querySelector('.container')
 const card = document.querySelector('.card')
+const back = document.querySelector('#back');
 
 
 const responseData = () => getCharacters()
@@ -16,29 +17,26 @@ const responseData = () => getCharacters()
 
   const responseSinglePage = (e) => { 
   
-     const cardId = e.target.closest('.card').id
-    //  const cardL = e.target.closest('.card').transform(1.5)
-    // function enlargeImg(card) {
-    //   // Set image size to 1.5 times original
-      // card.transform = "scale(1.5)";
-  //     // Animation effect
-  //     card.style.transition = "transform 0.25s ease";
-  //     return card
-  // }
-  
+     const cardId = e.target.closest('.card').id;
       console.log(cardId);
       getSingleCharacter(cardId)
         .then((singlePage) => {
         console.log(singlePage);
         renderSinglePage(singlePage);
+
      })
+     
    }
-  // function enlargeImg() {
-  //   card.setAttribute('style', 'background-color:red;')
-  //  }
+
+   const backHome = () => {
+    console.log('kl');
+    document.querySelector('.char-modal')
+  }
+  console.log(document.querySelector('.char-modal'));
    
-      
 
 
     singlePage.addEventListener('click', responseSinglePage);
+    back.addEventListener('click', backHome)
+    
     // card.addEventListener('click', enlargeImg )
